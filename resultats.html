@@ -180,6 +180,7 @@ footer strong{color:#fff}
 mark{background:rgba(255,199,0,.45);color:inherit}
 @media (max-width:900px){.grid4,.calc{grid-template-columns:1fr 1fr}.cres{grid-template-columns:1fr}}
 </style>
+<script src="i18n.js"></script>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -207,6 +208,7 @@ mark{background:rgba(255,199,0,.45);color:inherit}
         <li><a href="naruto-cotes/cotes.html">Cotes</a></li>
         <li><a href="sorties.html">Sorties</a></li>
         <li><a href="a-propos.html">À propos</a></li>
+        <li><a href="abonnement.html">S'abonner</a></li>
         <li><a href="resultats.html#calculateur" class="cta">Calculer une cote</a></li>
       </ul>
     </nav>
@@ -340,7 +342,7 @@ function rowHtml(v,q){
   return '<tr>'+
     '<td class="c-img">'+(v.image?'<img class="thumb" src="'+esc(v.image)+'" data-full="'+esc(v.image_grande||v.image)+'" alt="'+esc(v.carte+' '+v.numero+' · '+v.version)+'" loading="lazy" referrerpolicy="no-referrer">':'')+'</td>'+
     '<td class="c-date">'+(v.date_vente?'<span class="date">'+fmtDate(v.date_vente)+'</span>':'<span class="date unk">date inconnue</span>')+'</td>'+
-    '<td class="c-carte"><span class="cn">'+esc(v.carte)+' '+esc(v.numero)+'</span>'+gchip+hc+'<br><span class="vs">'+esc(v.version)+'</span>'+(v.remarque?'<span class="rem">'+esc(v.remarque)+'</span>':'')+'</td>'+
+    '<td class="c-carte"><span class="cn">'+esc(v.carte)+' '+esc(v.numero)+'</span>'+gchip+hc+'<br><span class="vs">'+esc(v.version)+'</span>'+(v.remarque?'<span class="rem" translate="no">'+esc(v.remarque)+'</span>':'')+'</td>'+
     '<td class="c-etat etat">'+esc(v.etat)+'</td>'+
     '<td class="c-type">'+t+(Number(v.quantite)>1?'<br><small class="orig">lot de '+esc(v.quantite)+'</small>':'')+'</td>'+
     '<td class="c-prix"><span class="price">'+fmtEur(v.prix)+'</span><span class="orig">'+fmtOrig(v)+(Number(v.quantite)>1?' / carte':'')+'</span></td>'+
