@@ -51,8 +51,34 @@ h2.sec::before{content:"";position:absolute;left:0;top:12%;bottom:12%;width:7px;
 .cote .val{font-family:Bangers,Impact,sans-serif;font-size:2rem;color:var(--orange);letter-spacing:1px;line-height:1.1}
 .cote .rng{font-size:.82rem;color:var(--muted)}
 .cote .none{font-size:.9rem;color:var(--orange2)}
+.cotes{grid-template-columns:repeat(auto-fill,minmax(420px,1fr))}
+@media (max-width:500px){.cotes{grid-template-columns:1fr}}
+.cote{align-items:flex-start}
+.mk{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+.mk>div{background:#0d0d10;border:1px solid var(--line);border-radius:12px;padding:8px 10px}
+.mk .lab{font-size:.7rem;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);font-weight:600}
+.mk .jp .val{color:var(--orange2)}
+.m-jp{background:#fff;color:#bc002d}.m-us{background:#3c3b6e;color:#fff}.m-fr{background:#0055a4;color:#fff}.m-autre{background:#444;color:#ddd}
+.paysnav{display:flex;gap:10px;flex-wrap:wrap}.paysnav a{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:600;border:1px solid var(--line);border-radius:999px;padding:7px 14px;background:var(--bg2)}.paysnav a:hover{border-color:var(--orange)}
+.paysnav .flag{width:26px;height:17px;border-width:1px}
+.pays{margin-top:34px;padding:28px 0 34px;border-top:3px solid var(--line)}
+.pays.small{opacity:.92}
+.phead{display:flex;align-items:center;gap:18px;margin-bottom:18px}
+.phead h2{font-size:clamp(2rem,5vw,3rem);line-height:1}
+.phead small{display:block;color:var(--muted);font-family:Poppins,sans-serif;font-size:.85rem;letter-spacing:0}
+.flag{flex:none;width:72px;height:48px;border-radius:6px;border:2px solid #000;box-shadow:0 4px 14px rgba(0,0,0,.5);position:relative;overflow:hidden;display:inline-block}
+.f-jp{background:radial-gradient(circle at 50% 50%,#bc002d 0 28%,#fff 29%)}
+.f-fr{background:linear-gradient(90deg,#0055a4 0 33.33%,#fff 33.33% 66.66%,#ef4135 66.66%)}
+.f-us{background:linear-gradient(#3c3b6e,#3c3b6e) 0 0/42% 54% no-repeat,repeating-linear-gradient(#b22234 0 7.69%,#fff 7.69% 15.38%)}
+.f-autre{background:repeating-linear-gradient(135deg,#333 0 8px,#555 8px 16px)}
+.pcotes{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin-bottom:20px}
+.pcotes .cote{align-items:center}
+.ptable{margin-top:6px}
+.srcs{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin-top:14px;font-size:.9rem}
+.srcs b{color:var(--orange2)}.srcs ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:6px}.srcs a{color:var(--text)}.srcs a:hover{color:var(--orange)}
+.mnote{background:rgba(255,122,0,.08);border:1px solid var(--line);border-left:4px solid var(--orange2);border-radius:12px;padding:10px 14px;color:#d8d4dc;font-size:.86rem;margin-top:16px}
 
-.filters{background:var(--bg2);border:1px solid var(--line);border-radius:18px;padding:18px;display:grid;grid-template-columns:2fr repeat(4,1fr) 1.3fr;gap:12px;align-items:end}
+.filters{background:var(--bg2);border:1px solid var(--line);border-radius:18px;padding:18px;display:grid;grid-template-columns:2fr repeat(5,1fr) 1.3fr;gap:12px;align-items:end}
 .filters label{display:flex;flex-direction:column;gap:5px;font-size:.75rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.8px}
 .filters input,.filters select{background:#0d0d10;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font:inherit;font-size:.92rem;text-transform:none;letter-spacing:0;width:100%}
 .filters input:focus,.filters select:focus{outline:2px solid var(--orange);border-color:transparent}
@@ -162,21 +188,21 @@ footer strong{color:var(--text)}
   </div>
 </div>
 
-<section>
+<section style="padding-bottom:0">
   <div class="wrap">
-    <h2 class="sec title-font">Cote par version</h2>
-    <p class="secnote">Cote = prix médian des ventes réelles <strong>datées</strong>, avec la fourchette (vente la plus basse et la plus haute). Les ventes sans date ne comptent pas dans la cote.</p>
-    <div class="cotes" id="cotes"></div>
+    <nav class="paysnav"><a href="#pays-jp"><span class="flag f-jp"></span>Japon</a><a href="#pays-us"><span class="flag f-us"></span>États-Unis</a><a href="#pays-fr"><span class="flag f-fr"></span>France</a><a href="#pays-autre">Autres / pays inconnu</a></nav>
+    <p class="secnote" style="margin-top:14px">Cote = prix médian des ventes réelles <strong>datées</strong> du pays, avec la fourchette (vente la plus basse et la plus haute). Les ventes sans date ne comptent pas dans la cote. Le pays est celui indiqué par la source (site, domaine eBay, localisation du vendeur) : s'il n'est pas indiqué, la vente va dans « Autres ».</p>
   </div>
 </section>
-
+<div id="pays"></div>
 <section style="padding-top:10px">
   <div class="wrap">
-    <h2 class="sec title-font">Toutes les ventes</h2>
+    <h2 class="sec title-font">Toutes les ventes (tous pays)</h2>
     <p class="secnote">Clique sur un titre de colonne pour trier, et sur une photo pour l'agrandir.</p>
     <div class="filters">
       <label class="search">Recherche<input id="f-q" type="search" placeholder="Carte, version, site…"></label>
       <label>Version<select id="f-version"><option value="">Toutes</option></select></label>
+      <label>Pays<select id="f-marche"><option value="">Tous</option><option>Japon</option><option>États-Unis</option><option>France</option><option>Autre</option></select></label>
       <label>Type<select id="f-type"><option value="">Tous</option><option value="vente">Vente</option><option value="enchère">Enchère</option></select></label>
       <label>État<select id="f-etat"><option value="">Tous</option><option value="gradee">Gradée</option><option value="non gradée">Non gradée</option><option value="non précisé">Non précisé</option></select></label>
       <label>Période<select id="f-period"><option value="">Toutes</option><option value="30">30 derniers jours</option><option value="90">90 derniers jours</option><option value="365">12 derniers mois</option><option value="nodate">Date inconnue</option></select></label>
@@ -197,7 +223,7 @@ footer strong{color:var(--text)}
         <th data-k="etat">État</th>
         <th data-k="type">Type</th>
         <th data-k="prix">Prix</th>
-        <th data-k="site">Source</th>
+        <th data-k="site">Pays / source</th>
       </tr></thead>
       <tbody id="rows"></tbody>
     </table>
@@ -233,6 +259,7 @@ var VENTES = [
   "prix_origine": "74.99",
   "devise": "USD",
   "site": "eBay",
+  "marche": "Autre",
   "url": "https://www.ebay.es/itm/287646524363",
   "image": "naruto-cotes/images/thumbs/ebay-287646524363.jpg",
   "remarque": "Annonce à 74,99 $ ou meilleure offre : le prix final peut être plus bas",
@@ -248,6 +275,7 @@ var VENTES = [
   "prix_origine": "239",
   "devise": "USD",
   "site": "Varible (Rarible)",
+  "marche": "États-Unis",
   "url": "https://varible.rarible.com/card/bz-21600",
   "image": "naruto-cotes/images/thumbs/nm-yankees.jpg",
   "remarque": "",
@@ -263,6 +291,7 @@ var VENTES = [
   "prix_origine": "45960",
   "devise": "JPY",
   "site": "Yahoo Japon",
+  "marche": "Japon",
   "url": "https://noncky.net/item/o1243963314",
   "image": "naruto-cotes/images/thumbs/yahoo-o1243963314.jpg",
   "remarque": "Lot de 5 cartes vendu 229 800 ¥ (1 292,31 €) : prix ramené à une carte",
@@ -278,6 +307,7 @@ var VENTES = [
   "prix_origine": "1200",
   "devise": "USD",
   "site": "eBay",
+  "marche": "Autre",
   "url": "https://www.reddit.com/r/NarutoTCGInvesting/comments/1vbyzpe/naruto_gen_con_promo_sold_for_1200/",
   "image": "naruto-cotes/images/thumbs/reddit-1vbyzpe.jpg",
   "remarque": "Annonce à 1 200 $ ou meilleure offre (vente signalée sur Reddit) : le prix final peut être plus bas",
@@ -293,6 +323,7 @@ var VENTES = [
   "prix_origine": "800",
   "devise": "USD",
   "site": "Vente entre particuliers (Reddit)",
+  "marche": "Autre",
   "url": "https://www.reddit.com/r/gencon/comments/1vc3294/what_is_with_the_naruto_promo_cards_on_ebay/",
   "image": "naruto-cotes/images/thumbs/nm-gencon.jpg",
   "remarque": "Vente déclarée par le vendeur sur Reddit : non vérifiée",
@@ -308,6 +339,7 @@ var VENTES = [
   "prix_origine": "1800",
   "devise": "USD",
   "site": "Revente (source : Resell Calendar)",
+  "marche": "Autre",
   "url": "https://resellcalendar.com/news/news/gen-con-naruto-chakra-promo-cards-reseller-bandai-tcg/",
   "image": "naruto-cotes/images/thumbs/nm-gencon.jpg",
   "remarque": "Lot carte + bon pour un tapis de jeu + sac à dos : pas le prix de la carte seule",
@@ -323,6 +355,7 @@ var VENTES = [
   "prix_origine": "204",
   "devise": "USD",
   "site": "StockX",
+  "marche": "États-Unis",
   "url": "https://stockx.com/2026-naruto-x-new-york-yankees-card-yankee-stadium-exclusive-promo-card-cp-001-ungraded",
   "image": "naruto-cotes/images/thumbs/nm-yankees.jpg",
   "remarque": "Dernière vente StockX",
@@ -338,6 +371,7 @@ var VENTES = [
   "prix_origine": "44444",
   "devise": "JPY",
   "site": "Mercari Japon",
+  "marche": "Japon",
   "url": "https://jp.mercari.com/item/m82121167897",
   "image": "naruto-cotes/images/thumbs/mercari-m82121167897.jpg",
   "remarque": "",
@@ -353,13 +387,14 @@ var VENTES = [
   "prix_origine": "25000",
   "devise": "JPY",
   "site": "Mercari Japon",
+  "marche": "Japon",
   "url": "https://jp.mercari.com/item/m75473008228",
   "image": "naruto-cotes/images/thumbs/mercari-m75473008228.jpg",
   "remarque": "Coins abîmés selon l'annonce",
   "image_grande": "naruto-cotes/images/mercari-m75473008228.jpg"
  }
 ];
-var COLS = ["date_vente", "carte", "version", "etat", "type", "prix_eur", "prix_origine", "devise", "site", "url", "image", "remarque"];
+var COLS = ["date_vente", "carte", "version", "etat", "type", "prix_eur", "prix_origine", "devise", "site", "marche", "url", "image", "remarque"];
 
 var fmtEur = function(n){return n.toLocaleString('fr-FR',{minimumFractionDigits:2,maximumFractionDigits:2})+' €'};
 var fmtEur0 = function(n){return Math.round(n).toLocaleString('fr-FR')+' €'};
@@ -389,36 +424,74 @@ VENTES.forEach(function(v){v.prix=Number(v.prix_eur)});
     document.getElementById('s-max2').textContent=mx.version+(mx.date_vente?' · '+fmtDate(mx.date_vente):' · date inconnue')+' · '+mx.site;}
 })();
 
-// Cotes par version
+// Sections par pays
+var PAYS=[
+ {k:'Japon',id:'pays-jp',fl:'f-jp',t:'Japon',sub:'Mercari Japon, Yahoo! Enchères Japon',
+  note:'<p class="mnote">🇯🇵 Prix du marché japonais : ils <strong>n\'incluent pas</strong> les frais d\'intermédiaire (Buyee, ZenMarket…), les frais de port vers la France ni la TVA d\'importation (environ 20 %). Pour un acheteur en France, le coût réel est donc nettement plus élevé.</p>',
+  src:[['Mercari Japon','https://jp.mercari.com'],['Yahoo! Enchères Japon','https://auctions.yahoo.co.jp'],['Buyee (Yahoo et Mercari, en français)','https://buyee.jp']]},
+ {k:'États-Unis',id:'pays-us',fl:'f-us',t:'États-Unis',sub:'eBay US, StockX, Varible, Mercari US, TCGplayer',note:'',
+  src:[['eBay US (ventes terminées)','https://www.ebay.com'],['130point (prix eBay réels)','https://130point.com'],['Mercari US','https://www.mercari.com'],['TCGplayer','https://www.tcgplayer.com']]},
+ {k:'France',id:'pays-fr',fl:'f-fr',t:'France',sub:'eBay France, Cardmarket',note:'',
+  src:[['eBay France (ventes terminées)','https://www.ebay.fr'],['Cardmarket','https://www.cardmarket.com/fr']]},
+ {k:'Autre',id:'pays-autre',fl:'f-autre',t:'Autres / pays inconnu',sub:'Europe hors France, ou pays non indiqué par la source',note:'',src:[],small:true}
+];
+var VERSIONS=[];VENTES.forEach(function(v){if(VERSIONS.indexOf(v.version)<0)VERSIONS.push(v.version)});
+function rowHtml(v){
+  var t=v.type==='enchère'?'<span class="pill t-enchere">Enchère</span>':'<span class="pill t-vente">Vente</span>';
+  var mc={'Japon':'m-jp','États-Unis':'m-us','France':'m-fr'}[v.marche]||'m-autre';
+  return '<tr>'+
+    '<td class="c-img">'+(v.image?'<img class="thumb" src="'+esc(v.image)+'" data-full="'+esc(v.image_grande||v.image)+'" alt="'+esc(v.carte+' · '+v.version)+'" loading="lazy">':'')+'</td>'+
+    '<td class="c-date">'+(v.date_vente?'<span class="date">'+fmtDate(v.date_vente)+'</span>':'<span class="date unk">date inconnue</span>')+'</td>'+
+    '<td class="c-carte"><span class="cn">'+esc(v.carte)+'</span><br><span class="vs">'+esc(v.version)+'</span>'+(v.remarque?'<span class="rem">'+esc(v.remarque)+'</span>':'')+'</td>'+
+    '<td class="c-etat etat">'+esc(v.etat)+'</td>'+
+    '<td class="c-type">'+t+'</td>'+
+    '<td class="c-prix"><span class="price">'+fmtEur(v.prix)+'</span><span class="orig">'+fmtOrig(v)+'</span></td>'+
+    '<td class="c-src"><span class="pill '+mc+'">'+esc(v.marche==='Autre'?'Autre / inconnu':v.marche)+'</span><br>'+(v.url?'<a class="src" href="'+esc(v.url)+'" target="_blank" rel="noopener">'+esc(v.site)+' ↗</a>':esc(v.site))+'</td>'+
+  '</tr>';
+}
+function byDate(a,b){if(!a.date_vente&&!b.date_vente)return b.prix-a.prix;if(!a.date_vente)return 1;if(!b.date_vente)return -1;return b.date_vente.localeCompare(a.date_vente)}
 (function(){
-  var by={},order=[];
-  VENTES.forEach(function(v){if(!by[v.version]){by[v.version]=[];order.push(v.version)}by[v.version].push(v)});
   var html='';
-  order.forEach(function(ver){
-    var all=by[ver],d=all.filter(function(v){return v.date_vente}).map(function(v){return v.prix});
-    var img=(all.find(function(v){return v.image})||{}).image||'';
-    html+='<div class="cote">'+(img?'<img src="'+esc(img)+'" alt="'+esc(ver)+'" loading="lazy">':'')+'<div><h3>'+esc(all[0].carte)+' · '+esc(ver)+'</h3>';
-    if(d.length){
-      html+='<div class="val">'+fmtEur0(median(d))+'</div><div class="rng">'+(d.length>1?'Fourchette '+fmtEur0(Math.min.apply(null,d))+' – '+fmtEur0(Math.max.apply(null,d))+' · ':'')+d.length+' vente'+(d.length>1?'s':'')+' datée'+(d.length>1?'s':'')+(all.length>d.length?' (+'+(all.length-d.length)+' sans date)':'')+'</div>';
-      if(d.length<3)html+='<div class="rng" style="color:var(--orange2)">⚠ Peu de ventes : cote indicative</div>';
-    } else html+='<div class="none">Pas encore de vente datée</div>';
-    html+='</div></div>';
+  PAYS.forEach(function(P){
+    var sub=VENTES.filter(function(v){return v.marche===P.k}).sort(byDate);
+    if(P.small&&!sub.length)return;
+    html+='<section class="pays'+(P.small?' small':'')+'" id="'+P.id+'"><div class="wrap"><div class="phead"><span class="flag '+P.fl+'"></span><h2 class="title-font">'+(P.small?P.t:'Cote '+P.t)+'<small>'+esc(P.sub)+' · '+sub.length+' vente'+(sub.length>1?'s':'')+'</small></h2></div>';
+    if(!P.small){
+      html+='<div class="pcotes">';
+      VERSIONS.forEach(function(ver){
+        var all=sub.filter(function(v){return v.version===ver}),d=all.filter(function(v){return v.date_vente}).map(function(v){return v.prix});
+        var img=(VENTES.find(function(v){return v.version===ver&&v.image})||{}).image||'';
+        html+='<div class="cote">'+(img?'<img src="'+esc(img)+'" alt="'+esc(ver)+'" loading="lazy">':'')+'<div><h3>'+esc(ver)+'</h3>';
+        if(d.length){
+          html+='<div class="val">'+fmtEur0(median(d))+'</div><div class="rng">'+(d.length>1?'Fourchette '+fmtEur0(Math.min.apply(null,d))+' – '+fmtEur0(Math.max.apply(null,d))+' · ':'')+d.length+' vente'+(d.length>1?'s':'')+' datée'+(d.length>1?'s':'')+(all.length>d.length?' (+'+(all.length-d.length)+' sans date)':'')+'</div>';
+          if(d.length<3)html+='<div class="rng" style="color:var(--orange2)">⚠ Peu de ventes : cote indicative</div>';
+        } else html+='<div class="val" style="color:var(--muted)">—</div><div class="none">'+(all.length?all.length+' vente'+(all.length>1?'s':'')+' sans date, pas de cote':'Aucune vente pour l\'instant')+'</div>';
+        html+='</div></div>';
+      });
+      html+='</div>'+P.note;
+    } else html+='<p class="secnote">Ventes dont le pays n\'est pas indiqué par la source, ou situées en Europe hors France. Elles ne comptent dans aucune cote par pays.</p>';
+    html+=sub.length?'<table class="ptable"><thead><tr><th class="nosort">Photo</th><th class="nosort">Date</th><th class="nosort">Carte / version</th><th class="nosort">État</th><th class="nosort">Type</th><th class="nosort">Prix</th><th class="nosort">Pays / source</th></tr></thead><tbody>'+sub.map(rowHtml).join('')+'</tbody></table>'
+      :'<div class="empty">Aucune vente relevée pour l\'instant dans ce pays.</div>';
+    if(P.src.length)html+='<div class="srcs"><b>Sources à surveiller</b><ul>'+P.src.map(function(s){return '<li><a href="'+s[1]+'" target="_blank" rel="noopener">'+esc(s[0])+' ↗</a></li>'}).join('')+'</ul></div>';
+    html+='</div></section>';
   });
-  document.getElementById('cotes').innerHTML=html;
+  document.getElementById('pays').innerHTML=html;
   var sel=document.getElementById('f-version');
-  order.forEach(function(v){var o=document.createElement('option');o.value=v;o.textContent=v;sel.appendChild(o)});
+  VERSIONS.forEach(function(v){var o=document.createElement('option');o.value=v;o.textContent=v;sel.appendChild(o)});
+  document.getElementById('pays').addEventListener('click',function(e){if(e.target.classList.contains('thumb')){$('lb-img').src=e.target.getAttribute('data-full');$('lb').classList.add('open')}});
 })();
 
 // Tableau, filtres, tri
 var sortK='date',sortDir=-1,current=[];
 var $=function(id){return document.getElementById(id)};
 function filtered(){
-  var q=$('f-q').value.trim().toLowerCase(),ver=$('f-version').value,ty=$('f-type').value,et=$('f-etat').value,pe=$('f-period').value,
+  var q=$('f-q').value.trim().toLowerCase(),ver=$('f-version').value,ty=$('f-type').value,mk=$('f-marche').value,et=$('f-etat').value,pe=$('f-period').value,
       mn=parseFloat($('f-min').value),mx=parseFloat($('f-max').value),now=Date.now();
   return VENTES.filter(function(v){
-    if(q&&(v.carte+' '+v.version+' '+v.etat+' '+v.site+' '+v.remarque+' '+v.type).toLowerCase().indexOf(q)<0)return false;
+    if(q&&(v.carte+' '+v.version+' '+v.etat+' '+v.site+' '+v.marche+' '+v.remarque+' '+v.type).toLowerCase().indexOf(q)<0)return false;
     if(ver&&v.version!==ver)return false;
     if(ty&&v.type!==ty)return false;
+    if(mk&&v.marche!==mk)return false;
     if(et==='gradee'&&!/^gradée/i.test(v.etat))return false;
     if(et==='non gradée'&&v.etat.indexOf('non gradée')!==0)return false;
     if(et==='non précisé'&&v.etat!=='non précisé')return false;
@@ -446,24 +519,13 @@ function render(){
     var k=th.getAttribute('data-k');th.innerHTML=th.textContent.replace(/ [▲▼]$/,'')+(k===sortK?' <span class="ar">'+(sortDir>0?'▲':'▼')+'</span>':'');
   });
   if(!current.length){$('rows').innerHTML='<tr><td colspan="7" class="empty">Aucune vente ne correspond à ces filtres.</td></tr>';return}
-  $('rows').innerHTML=current.map(function(v){
-    var t=v.type==='enchère'?'<span class="pill t-enchere">Enchère</span>':'<span class="pill t-vente">Vente</span>';
-    return '<tr>'+
-      '<td class="c-img">'+(v.image?'<img class="thumb" src="'+esc(v.image)+'" data-full="'+esc(v.image_grande||v.image)+'" alt="'+esc(v.carte+' · '+v.version)+'" loading="lazy">':'')+'</td>'+
-      '<td class="c-date">'+(v.date_vente?'<span class="date">'+fmtDate(v.date_vente)+'</span>':'<span class="date unk">date inconnue</span>')+'</td>'+
-      '<td class="c-carte"><span class="cn">'+esc(v.carte)+'</span><br><span class="vs">'+esc(v.version)+'</span>'+(v.remarque?'<span class="rem">'+esc(v.remarque)+'</span>':'')+'</td>'+
-      '<td class="c-etat etat">'+esc(v.etat)+'</td>'+
-      '<td class="c-type">'+t+'</td>'+
-      '<td class="c-prix"><span class="price">'+fmtEur(v.prix)+'</span><span class="orig">'+fmtOrig(v)+'</span></td>'+
-      '<td class="c-src">'+(v.url?'<a class="src" href="'+esc(v.url)+'" target="_blank" rel="noopener">'+esc(v.site)+' ↗</a>':esc(v.site))+'</td>'+
-    '</tr>';
-  }).join('');
+  $('rows').innerHTML=current.map(rowHtml).join('');
 }
 document.querySelectorAll('thead th[data-k]').forEach(function(th){th.addEventListener('click',function(){
   var k=th.getAttribute('data-k');if(k===sortK)sortDir=-sortDir;else{sortK=k;sortDir=(k==='date'||k==='prix')?-1:1}render();
 })});
-['f-q','f-version','f-type','f-etat','f-period','f-min','f-max'].forEach(function(id){$(id).addEventListener('input',render)});
-$('reset').addEventListener('click',function(){['f-q','f-min','f-max'].forEach(function(id){$(id).value=''});['f-version','f-type','f-etat','f-period'].forEach(function(id){$(id).selectedIndex=0});sortK='date';sortDir=-1;render()});
+['f-q','f-version','f-marche','f-type','f-etat','f-period','f-min','f-max'].forEach(function(id){$(id).addEventListener('input',render)});
+$('reset').addEventListener('click',function(){['f-q','f-min','f-max'].forEach(function(id){$(id).value=''});['f-version','f-marche','f-type','f-etat','f-period'].forEach(function(id){$(id).selectedIndex=0});sortK='date';sortDir=-1;render()});
 $('rows').addEventListener('click',function(e){if(e.target.classList.contains('thumb')){$('lb-img').src=e.target.getAttribute('data-full');$('lb').classList.add('open')}});
 document.addEventListener('keydown',function(e){if(e.key==='Escape')$('lb').classList.remove('open')});
 
