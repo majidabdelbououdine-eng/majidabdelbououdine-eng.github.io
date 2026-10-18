@@ -46,6 +46,7 @@ nav a:hover,nav a.active{background:var(--orange);color:#111}
 .hero h1 em{font-style:normal;color:var(--orange);display:block}
 .hero p.tag{font-size:1.15rem;color:#d8d4dc;max-width:560px;margin:22px 0 32px}
 .hero p.tag strong{color:var(--orange2)}
+.hsearch{display:flex;gap:8px;margin:0 0 22px;max-width:620px}.hsearch input{flex:1;min-width:0;background:#0d0d10;color:var(--text);border:2px solid var(--orange);border-radius:14px;padding:15px 16px;font:inherit;font-size:1rem}.hsearch input:focus{outline:none;box-shadow:0 0 0 4px rgba(255,122,0,.25)}.hsearch button{cursor:pointer;border:0;font:inherit;font-weight:800;padding:0 22px;border-radius:14px;background:linear-gradient(135deg,var(--orange),var(--red));color:#fff}
 .btns{display:flex;flex-wrap:wrap;gap:14px}
 .btn{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;padding:17px 34px;border-radius:14px;font-size:1.1rem;transition:.2s}
 .btn-main{background:linear-gradient(135deg,var(--orange),var(--red));color:#fff;box-shadow:0 10px 30px rgba(255,122,0,.4);clip-path:polygon(0 0,100% 0,100% 70%,94% 100%,0 100%)}
@@ -162,6 +163,7 @@ footer strong{color:var(--text)}
       <ul id="menu">
         <li><a href="#accueil" class="active">Accueil</a></li>
         <li><a href="resultats.html">Résultats</a></li>
+        <li><a href="resultats.html#calculateur">Calculateur</a></li>
         <li><a href="naruto-cotes/cotes.html">Cotes</a></li>
         <li><a href="#sorties">Sorties</a></li>
         <li><a href="#apropos">À propos</a></li>
@@ -177,8 +179,13 @@ footer strong{color:var(--text)}
       <span class="badge">🔥 NARUTO CARD GAME · Bandai</span>
       <h1 class="title-font">Naruto card <em>and card</em></h1>
       <p class="tag">Suis les <strong>vrais prix de vente</strong> des cartes du NARUTO CARD GAME : ventes et enchères terminées, avec la date, la photo et la source de chaque prix.</p>
+      <form class="hsearch" action="resultats.html" method="get" role="search">
+        <input type="search" name="q" placeholder="Carte, version ou numéro (ex. CP-001, Yankees)" aria-label="Rechercher une carte">
+        <button type="submit">Rechercher</button>
+      </form>
       <div class="btns">
-        <a class="btn btn-main" href="naruto-cotes/cotes.html">Voir les cotes&nbsp;→</a>
+        <a class="btn btn-main" href="resultats.html#calculateur">Calculer une cote&nbsp;→</a>
+        <a class="btn btn-ghost" href="naruto-cotes/cotes.html">Voir les cotes</a>
         <a class="btn btn-ghost" href="#sorties">Calendrier des sorties</a>
       </div>
     </div>
@@ -193,32 +200,32 @@ footer strong{color:var(--text)}
 <section id="ventes">
   <div class="wrap">
     <div class="sec-head reveal">
-      <h2 class="title-font">Dernières ventes</h2>
-      <p>Les 3 ventes datées les plus récentes de la carte promo Chakra Card CP-001, la seule carte du jeu en circulation pour l'instant.</p>
+      <h2 class="title-font">Dernières ventes par pays</h2>
+      <p>La dernière vente de la carte promo Chakra Card CP-001 (la seule carte du jeu en circulation pour l'instant) dans chacun des trois pays suivis : France, États-Unis et Japon.</p>
     </div>
     <div class="sales">
       <article class="sale reveal">
-        <div class="img"><span class="type t-vente">Vente</span><img src="naruto-cotes/images/thumbs/ebay-287646524363.jpg" alt="Carte Chakra CP-001, version 2026 Event Promo" loading="lazy"></div>
+        <div class="img"><span class="type t-vente">France</span><img src="naruto-cotes/images/thumbs/nm-yankees.jpg" alt="Carte Chakra CP-001" loading="lazy"></div>
         <div class="body">
-          <h3>Carte Chakra CP-001 · 2026 Event Promo (NYCC, sans tampon)</h3>
-          <div class="meta">Vendue le 16/10/2026 · eBay (74,99 $)</div>
-          <div class="price">66,64 € <small>env.</small></div>
+          <h3>🇫🇷 France · aucune vente terminée pour l'instant</h3>
+          <div class="meta">Premières ventes attendues après la Paris Games Week (22-25/10/2026)</div>
+          <div class="price">— </div>
         </div>
       </article>
       <article class="sale reveal">
-        <div class="img"><span class="type t-vente">Vente</span><img src="naruto-cotes/images/thumbs/nm-yankees.jpg" alt="Carte Chakra CP-001, version New York Yankees" loading="lazy"></div>
+        <div class="img"><span class="type t-vente">Vente</span><img src="naruto-cotes/images/thumbs/us-i-ebayimg-com-images-g-BycAAeSwlBNqzrTI-s-l400-jpg.jpg" alt="Carte Chakra CP-001, version Event Promo (NYCC)" loading="lazy" referrerpolicy="no-referrer"></div>
         <div class="body">
-          <h3>Carte Chakra CP-001 · New York Yankees Ver. (non gradée)</h3>
-          <div class="meta">Vendue le 29/09/2026 · 239 $</div>
-          <div class="price">212,39 € <small>env.</small></div>
+          <h3>🇺🇸 Carte Chakra CP-001 · Event Promo (NYCC) (non gradée)</h3>
+          <div class="meta">États-Unis · vendue le 16/10/2026 · eBay US (90,74 $)</div>
+          <div class="price">80,64 € <small>env.</small></div>
         </div>
       </article>
       <article class="sale reveal">
-        <div class="img"><span class="type t-enchere">Enchère</span><img src="naruto-cotes/images/thumbs/yahoo-o1243963314.jpg" alt="Lot de cartes Chakra CP-001, version New York Yankees" loading="lazy"></div>
+        <div class="img"><span class="type t-vente">Vente</span><img src="https://cdn.snkrdunk.com/upload_bg_removed/naruto-2026-09-10-002-of.webp?size=m" alt="Carte Chakra CP-001, version New York Yankees" loading="lazy" referrerpolicy="no-referrer"></div>
         <div class="body">
-          <h3>Carte Chakra CP-001 · New York Yankees Ver.</h3>
-          <div class="meta">Enchère terminée le 10/09/2026 · Yahoo Japon (lot de 5, prix par carte)</div>
-          <div class="price">258,46 € <small>/ carte</small></div>
+          <h3>🇯🇵 Carte Chakra CP-001 · New York Yankees (non gradée)</h3>
+          <div class="meta">Japon · vendue le 18/10/2026 · SNKRDUNK (49 000 ¥)</div>
+          <div class="price">275,56 € <small>env.</small></div>
         </div>
       </article>
     </div>
