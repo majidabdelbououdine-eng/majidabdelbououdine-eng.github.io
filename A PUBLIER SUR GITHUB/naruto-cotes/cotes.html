@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cotes · Naruto card and card</title>
+<meta name="description" content="Cotes du NARUTO CARD GAME de Bandai par pays (France, États-Unis, Japon) : prix médian des ventes réelles, fourchette et nombre de ventes, non gradées et PSA 10.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+<style>
+/* Thème inspiré de la Gazette Drouot (polices libres Google Fonts : Outfit ≈ Radikal, Playfair Display) */
+:root{--navy:#0b2230;--navy2:#4e6f80;--slate:#4d6f80;--red:#fc4c4d;--red2:#f06468;--redpale:#ffebea;--hover:#bc393b;--soft:#f2f7fa;--blue:#3e92bb;--yellow:#ffc700;--ink:#2a303b;
+ --bg:#ffffff;--bg2:#f5f5f5;--field:#e9ebed;--line:#dde6eb;--line2:#d6d6d8;--text:#0b2230;--muted:#666666;
+ --orange:var(--red);--orange2:var(--red2);--card:#ffffff}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Outfit,system-ui,sans-serif;font-weight:300;font-size:16px;background:var(--bg);color:var(--text);line-height:1.4;overflow-x:hidden}
+a{color:inherit}
+strong,b{font-weight:600}
+.wrap{max-width:1200px;margin:0 auto;padding:0 22px}
+.title-font{font-family:Outfit,system-ui,sans-serif}
+header{position:sticky;top:0;z-index:50;background:var(--navy);color:#fff}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:24px;height:80px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:#fff}
+.logo svg{width:40px;height:40px}
+.logo span{font-weight:700;font-size:1.32rem;line-height:.95;text-transform:uppercase;letter-spacing:-.2px;display:block;max-width:150px}
+.logo span b{color:#fff;font-weight:700}
+nav ul{display:flex;gap:2px;list-style:none;align-items:center}
+nav a{text-decoration:none;font-weight:300;font-size:14px;padding:6px 10px;color:#fff;transition:background .15s}
+nav a:hover{background:rgba(255,255,255,.1)}
+nav a.active{background:var(--navy2)}
+nav a.cta{background:var(--red);color:var(--redpale);border-radius:29px;padding:4px 14px;margin-left:10px;font-weight:400}
+nav a.cta:hover{background:#bc393b}
+.burger{display:none;background:none;border:0;color:#fff;font-size:1.8rem;cursor:pointer}
+
+.pagehead{padding:46px 0 36px;background:#fff;border-bottom:1px solid var(--line)}
+.pagehead .kick{display:inline-block;background:var(--yellow);color:var(--ink);font-weight:500;font-size:11px;letter-spacing:1px;text-transform:uppercase;padding:4px 10px 3px;border-radius:2px;margin-bottom:14px}
+.pagehead h1{font-family:"Playfair Display",Georgia,serif;font-weight:700;font-size:clamp(2.3rem,5.4vw,3.4rem);line-height:1.08;color:var(--navy)}
+.pagehead h1 em{font-style:italic;font-weight:400}
+.pagehead p{color:var(--navy);max-width:780px;margin-top:14px;font-size:1.05rem;line-height:1.55}
+
+.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px}
+.stat{background:var(--bg2);border-top:3px solid var(--red);padding:16px 20px}
+.stat span{font-size:12px;color:var(--slate);text-transform:uppercase;letter-spacing:2px;font-weight:500}
+.stat b{display:block;font-weight:700;font-size:2rem;color:var(--navy);line-height:1.2;margin-top:2px}
+.stat small{color:var(--slate);font-size:13px;font-weight:400}
+
+section{padding:40px 0}
+h2.sec{font-weight:200;font-size:clamp(1.8rem,4vw,2.4rem);text-transform:uppercase;margin-bottom:8px}
+.secnote{color:var(--slate);font-size:15px;line-height:1.5;margin-bottom:20px}
+.secnote strong{color:var(--navy)}
+
+.cotes{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
+.cote{background:#fff;border:1px solid var(--line);padding:16px 18px;display:flex;gap:14px;align-items:center}
+.cote img{width:64px;height:86px;object-fit:contain;background:var(--bg2);flex:none}
+.cote h3{font-size:17px;font-weight:500;line-height:1.3;color:var(--navy)}
+.cote .val{font-weight:700;font-size:1.7rem;color:var(--red);line-height:1.15;margin-top:2px}
+.cote .rng{font-size:13px;color:var(--slate);font-weight:400}
+.cote .none{font-size:14px;color:var(--red2)}
+.cotes{grid-template-columns:repeat(auto-fill,minmax(420px,1fr))}
+@media (max-width:500px){.cotes{grid-template-columns:1fr}}
+.cote{align-items:flex-start}
+.mk{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+.mk>div{background:var(--bg2);border:1px solid var(--line);padding:8px 10px}
+.mk .lab{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--slate);font-weight:500}
+.mk .jp .val{color:var(--red2)}
+.m-jp{background:#fff;color:#bc002d;border:1px solid #f0c9d2}.m-us{background:#3c3b6e;color:#fff}.m-fr{background:#0055a4;color:#fff}.m-autre{background:var(--field);color:var(--ink)}
+.paysnav{display:flex;gap:10px;flex-wrap:wrap}.paysnav a{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:400;font-size:15px;border:1px solid var(--navy);border-radius:29px;padding:6px 16px;background:#fff;color:var(--navy)}.paysnav a:hover{background:var(--navy);color:#fff}
+.paysnav .flag{width:24px;height:16px;border-width:1px}
+.pays{margin-top:0;padding:46px 0 46px;border-top:1px solid var(--line)}
+.pays:nth-of-type(even){background:var(--bg2)}
+.pays:nth-of-type(even) .cote,.pays:nth-of-type(even) tbody tr{background:#fff}
+.pays.small{opacity:.95}
+.phead{display:flex;align-items:center;gap:18px;margin-bottom:22px}
+.phead h2{font-weight:200;font-size:clamp(1.8rem,4.4vw,2.5rem);line-height:1.1;text-transform:uppercase;color:#0c1014;letter-spacing:.5px}
+.phead h2 em{font-style:normal;color:var(--blue)}
+.phead small{display:block;color:var(--slate);font-family:Outfit,sans-serif;font-size:14px;font-weight:400;letter-spacing:0;text-transform:none;margin-top:4px}
+.flag{flex:none;width:64px;height:43px;border:1px solid var(--line2);position:relative;overflow:hidden;display:inline-block}
+.f-jp{background:radial-gradient(circle at 50% 50%,#bc002d 0 28%,#fff 29%)}
+.f-fr{background:linear-gradient(90deg,#0055a4 0 33.33%,#fff 33.33% 66.66%,#ef4135 66.66%)}
+.f-us{background:linear-gradient(#3c3b6e,#3c3b6e) 0 0/42% 54% no-repeat,repeating-linear-gradient(#b22234 0 7.69%,#fff 7.69% 15.38%)}
+.f-autre{background:repeating-linear-gradient(135deg,#c7d3dc 0 8px,#e9ebed 8px 16px)}
+.pcotes{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin-bottom:22px}
+.pcotes .cote{align-items:center}
+.ptable{margin-top:6px}
+.srcs{background:#fff;border:1px solid var(--line);padding:14px 18px;margin-top:18px;font-size:14px}
+.srcs b{color:var(--red);font-weight:700;letter-spacing:2px;text-transform:uppercase;font-size:13px}.srcs ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:6px}.srcs a{color:var(--navy)}.srcs a:hover{color:var(--red2)}
+.mnote{background:var(--soft);border-left:3px solid var(--red);padding:10px 14px;color:var(--navy);font-size:14px;margin-top:16px}
+
+.filters{background:var(--bg2);border:1px solid var(--line);padding:18px;display:grid;grid-template-columns:2fr repeat(5,1fr) 1.3fr;gap:12px;align-items:end}
+.filters label{display:flex;flex-direction:column;gap:5px;font-size:12px;font-weight:500;color:var(--slate);text-transform:uppercase;letter-spacing:1px}
+.filters input,.filters select{background:var(--field);color:var(--navy);border:1px solid var(--field);border-radius:0;padding:9px 12px;font:inherit;font-size:15px;text-transform:none;letter-spacing:0;width:100%}
+.filters input:focus,.filters select:focus{outline:none;border-color:var(--slate);background:#fff}
+.range{display:flex;gap:6px}
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:18px 0 12px}
+.count{color:var(--slate);font-size:15px}.count b{color:var(--navy)}
+.btn{display:inline-flex;align-items:center;gap:8px;cursor:pointer;border:1px solid var(--red);font:inherit;font-weight:500;font-size:15px;padding:8px 20px;border-radius:29px;background:var(--red);color:#fff;transition:.15s;text-decoration:none}
+.btn:hover{background:#bc393b;border-color:#bc393b}
+.btn.ghost{background:#fff;border:1px solid var(--navy);color:var(--navy)}
+.btn.ghost:hover{background:var(--navy);color:#fff}
+
+table{width:100%;border-collapse:collapse;border-spacing:0}
+thead th{text-align:left;font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:1px;color:var(--slate);padding:8px 12px;border-bottom:2px solid var(--navy);cursor:pointer;user-select:none;white-space:nowrap}
+thead th.nosort{cursor:default}
+thead th:hover:not(.nosort){color:var(--red)}
+thead th .ar{color:var(--red)}
+tbody tr{background:transparent}
+tbody td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:middle;font-size:15px}
+tbody tr:hover td{background:rgba(62,146,187,.06)}
+.thumb{width:56px;height:74px;object-fit:contain;background:var(--bg2);cursor:zoom-in;display:block}
+.date{white-space:nowrap;font-weight:700;font-size:14px}
+.date.unk{color:var(--muted);font-style:italic;font-weight:300}
+.cn{font-weight:500}.vs{color:var(--slate);font-size:14px;font-weight:400}
+.rem{display:block;color:var(--muted);font-size:13px;margin-top:3px;max-width:380px}
+.pill{display:inline-block;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:1px;padding:3px 8px 2px;border-radius:2px;white-space:nowrap}
+.t-vente{background:var(--yellow);color:var(--ink)}.t-enchere{background:var(--navy);color:#fff}
+.etat{font-size:14px}
+.price{font-weight:700;font-size:1.2rem;color:var(--red);white-space:nowrap;line-height:1.1}
+.orig{display:block;font-size:13px;color:var(--muted);white-space:nowrap}
+.src{color:var(--red2);font-weight:500;text-decoration:none;font-size:14px}
+.src:hover{text-decoration:underline}
+.empty{text-align:center;color:var(--slate);padding:36px;background:#fff;border:1px dashed var(--line2)}
+.notes{color:var(--muted);font-size:14px;margin-top:22px;display:grid;gap:6px}
+
+.lb{position:fixed;inset:0;background:rgba(11,34,48,.92);display:none;align-items:center;justify-content:center;z-index:100;cursor:zoom-out;padding:20px}
+.lb.open{display:flex}
+.lb img{max-width:92vw;max-height:88vh;box-shadow:0 0 50px rgba(0,0,0,.5)}
+
+footer{padding:40px 0;background:var(--navy);color:#c7d3dc;font-size:14px;margin-top:40px}
+.foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+footer strong{color:#fff}
+
+@media (max-width:1000px){.filters{grid-template-columns:1fr 1fr 1fr}.filters .search{grid-column:1/-1}}
+@media (max-width:760px){
+  .summary{grid-template-columns:1fr}
+  .filters{grid-template-columns:1fr 1fr}
+  thead{display:none}
+  table,tbody,tr,td{display:block;width:100%}
+  tbody tr{display:grid;grid-template-columns:70px 1fr auto;gap:4px 12px;padding:12px;border-bottom:1px solid var(--line);margin-bottom:4px;background:#fff}
+  tbody td{border:0!important;padding:0}
+  td.c-img{grid-row:1/5}
+  td.c-prix{grid-column:3;grid-row:1;text-align:right}
+  td.c-carte{grid-column:2/4}
+  td.c-date,td.c-type,td.c-etat,td.c-src{grid-column:2/4}
+  td.c-date{grid-row:1;grid-column:2}
+}
+@media (max-width:860px){
+  .burger{display:block}
+  nav ul{display:none;position:absolute;top:80px;left:0;right:0;flex-direction:column;align-items:stretch;background:var(--navy);border-top:1px solid rgba(255,255,255,.15);padding:10px 22px 16px}
+  nav ul.open{display:flex}
+  nav a.cta{margin:8px 0 0;text-align:center}
+}
+
+/* Page Cotes */
+.ctable{width:100%;border-collapse:collapse;margin-top:6px}
+.ctable thead th{cursor:default}
+.ctable td{vertical-align:top}
+.ctable td.c-v{min-width:200px}
+.ctable .vname{font-size:17px;font-weight:500;color:var(--navy)}
+.ctable .vtot{display:block;font-size:13px;color:var(--slate);font-weight:400;margin-top:2px}
+.ctable .vlink{display:inline-block;margin-top:6px;font-size:14px;color:var(--red2);font-weight:500;text-decoration:none}
+.ctable .vlink:hover{text-decoration:underline}
+.cv .val{font-weight:700;font-size:1.45rem;color:var(--red);line-height:1.15}
+.cv .val.na{color:var(--line2)}
+.cv .rng{font-size:13px;color:var(--slate);font-weight:400}
+.cv .warn{font-size:12px;color:var(--red2)}
+.cv .last{font-size:12px;color:var(--muted)}
+.kpis{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.kpi{background:var(--bg2);border-top:3px solid var(--red);padding:12px 16px;min-width:200px}
+.kpi span{font-size:12px;color:var(--slate);text-transform:uppercase;letter-spacing:2px;font-weight:500}
+.kpi b{display:block;font-weight:700;font-size:1.5rem;color:var(--navy)}
+.kpi small{color:var(--slate);font-size:13px;font-weight:400}
+.cfilter{display:flex;gap:0;max-width:560px;margin-top:22px}
+.cfilter input{flex:1;background:var(--field);color:var(--navy);border:1px solid var(--field);padding:0 14px;height:42px;font:inherit;font-size:15px}
+.cfilter input:focus{outline:none;border-color:var(--slate);background:#fff}
+.upcoming{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;list-style:none;margin-top:8px}
+.upcoming li{background:#fff;border-left:3px solid var(--red);padding:12px 14px}
+.upcoming .when{font-size:12px;font-weight:700;color:var(--red);letter-spacing:2px;text-transform:uppercase}
+.upcoming b{display:block;font-weight:500;color:var(--navy)}
+@media (max-width:760px){
+  .ctable thead{display:none}
+  .ctable tbody tr{grid-template-columns:70px 1fr;padding:12px}
+  .ctable td.c-img{grid-row:1/6}
+  .ctable td{grid-column:2!important}
+  .ctable td.cv::before{content:attr(data-l);display:block;font-size:11px;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:var(--slate)}
+}
+</style>
+<script src="../i18n.js"></script>
+<script src="../recherche.js" defer></script>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff8a8b"/><stop offset="1" stop-color="#fc4c4d"/></linearGradient>
+    <symbol id="spiral" viewBox="0 0 200 200">
+      <circle cx="100" cy="100" r="92" fill="none" stroke="url(#g)" stroke-width="7"/>
+      <path d="M100 100 m0 -6 a6 6 0 1 1 -6 6 a12 12 0 0 1 12 -12 a18 18 0 0 1 18 18 a24 24 0 0 1 -24 24 a30 30 0 0 1 -30 -30 a36 36 0 0 1 36 -36 a42 42 0 0 1 42 42 a48 48 0 0 1 -48 48 a54 54 0 0 1 -54 -54" fill="none" stroke="url(#g)" stroke-width="8" stroke-linecap="round"/>
+      <path d="M166 70 l22 -38 l-6 44 z" fill="url(#g)"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo title-font" href="../index.html" aria-label="Naruto card and card, accueil">
+      <svg><use href="#spiral"/></svg>
+      <span>Naruto <b>card</b> and <b>card</b></span>
+    </a>
+    <button class="burger" aria-label="Ouvrir le menu" onclick="document.getElementById('menu').classList.toggle('open')">☰</button>
+    <nav>
+      <ul id="menu">
+        <li><a href="../index.html">Accueil</a></li>
+        <li><a href="../resultats.html">Résultats</a></li>
+        <li><a href="../naruto-cotes/cotes.html" class="active">Cotes</a></li>
+        <li><a href="../sorties.html">Sorties</a></li>
+        <li><a href="../a-propos.html">À propos</a></li>
+        <li><a href="../abonnement.html">S'abonner</a></li>
+        <li><a href="../resultats.html#calculateur" class="cta">Calculer une cote</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+<div class="pagehead">
+  <div class="wrap">
+    <span class="kick">Cotes · France · États-Unis · Japon</span>
+    <h1>La cote <em>par pays</em></h1>
+    <p>La cote d'une carte est le <strong>prix médian</strong> de ses ventes réelles et datées, calculé séparément dans chaque pays et séparément pour les cartes <strong>non gradées</strong> et <strong>PSA 10</strong>. Sous la cote : la fourchette (vente la plus basse et la plus haute) et le nombre de ventes. Les lots et les ventes sans date sont comptés « hors cote ». Les simples prix demandés ne comptent jamais.</p>
+    <div class="kpis"><div class="kpi"><span>France</span><b>—</b><small>pas encore de vente</small></div><div class="kpi"><span>États-Unis</span><b>177 €</b><small>New York Yankees, non gradée · 5 ventes</small></div><div class="kpi"><span>Japon</span><b>253 €</b><small>New York Yankees, non gradée · 412 ventes</small></div></div>
+    <div class="cfilter"><input id="cq" type="search" placeholder="Filtrer une version (ex. Yankees, Gen Con, NYCC)…" aria-label="Filtrer une version"></div>
+    <nav class="paysnav" style="margin-top:18px"><a href="#pays-fr"><span class="flag f-fr"></span>France</a><a href="#pays-us"><span class="flag f-us"></span>États-Unis</a><a href="#pays-jp"><span class="flag f-jp"></span>Japon</a></nav>
+  </div>
+</div>
+
+<section class="pays" id="pays-fr" style="background:var(--bg2)"><div class="wrap"><div class="phead"><span class="flag f-fr"></span><h2 class="title-font"><em>Cote</em> France<small>eBay France, Cardmarket, Vinted, Leboncoin · 0 vente</small></h2></div><div class="empty">Aucune vente terminée relevée en France pour l&#x27;instant. Les premières ventes sont attendues après la Paris Games Week (22-25/10/2026).</div></div></section>
+<section class="pays" id="pays-us"><div class="wrap"><div class="phead"><span class="flag f-us"></span><h2 class="title-font"><em>Cote</em> États-Unis<small>TCGplayer, eBay US, Varible, StockX · 12 ventes</small></h2></div><table class="ctable"><thead><tr><th class="nosort">Photo</th><th class="nosort">Carte / version</th><th class="nosort">Non gradée</th><th class="nosort">PSA 10</th></tr></thead><tbody><tr data-v="Carte Chakra CP-001 New York Yankees"><td class="c-img"><img class="thumb" src="images/thumbs/us-tcgplayer-cdn-tcgplayer-com-product-717838-in-1000x1000-jpg.jpg" data-full="images/thumbs/us-tcgplayer-cdn-tcgplayer-com-product-717838-in-1000x1000-jpg.jpg" alt="Carte Chakra CP-001 · New York Yankees" loading="lazy" referrerpolicy="no-referrer"></td><td class="c-v"><span class="vname">New York Yankees</span><span class="vtot">Carte Chakra CP-001 · 6 ventes relevées</span><a class="vlink" href="../resultats.html?q=New+York+Yankees#pays-us">Voir les ventes →</a></td><td class="cv" data-l="Non gradée"><div class="val">177 €</div><div class="rng">142 € – 212 € · 5 ventes (+1 hors cote)</div><div class="last">Dernière vente : 11/10/2026</div></td><td class="cv" data-l="PSA 10"><div class="val na">—</div><div class="rng">Aucune vente</div></td></tr><tr data-v="Carte Chakra CP-001 Gen Con 2026"><td class="c-img"><img class="thumb" src="images/thumbs/us-tcgplayer-cdn-tcgplayer-com-product-717832-in-1000x1000-jpg.jpg" data-full="images/thumbs/us-tcgplayer-cdn-tcgplayer-com-product-717832-in-1000x1000-jpg.jpg" alt="Carte Chakra CP-001 · Gen Con 2026" loading="lazy" referrerpolicy="no-referrer"></td><td class="c-v"><span class="vname">Gen Con 2026</span><span class="vtot">Carte Chakra CP-001 · 5 ventes relevées</span><a class="vlink" href="../resultats.html?q=Gen+Con+2026#pays-us">Voir les ventes →</a></td><td class="cv" data-l="Non gradée"><div class="val">888 €</div><div class="rng">800 € – 889 € · 5 ventes</div><div class="last">Dernière vente : 12/10/2026</div></td><td class="cv" data-l="PSA 10"><div class="val na">—</div><div class="rng">Aucune vente</div></td></tr><tr data-v="Carte Chakra CP-001 Event Promo (NYCC)"><td class="c-img"><img class="thumb" src="images/thumbs/us-i-ebayimg-com-images-g-BycAAeSwlBNqzrTI-s-l400-jpg.jpg" data-full="images/thumbs/us-i-ebayimg-com-images-g-BycAAeSwlBNqzrTI-s-l400-jpg.jpg" alt="Carte Chakra CP-001 · Event Promo (NYCC)" loading="lazy" referrerpolicy="no-referrer"></td><td class="c-v"><span class="vname">Event Promo (NYCC)</span><span class="vtot">Carte Chakra CP-001 · 1 vente relevée</span><a class="vlink" href="../resultats.html?q=Event+Promo+(NYCC)#pays-us">Voir les ventes →</a></td><td class="cv" data-l="Non gradée"><div class="val">81 €</div><div class="rng">1 vente</div><div class="warn">⚠ Moins de 3 ventes : cote indicative</div><div class="last">Dernière vente : 16/10/2026</div></td><td class="cv" data-l="PSA 10"><div class="val na">—</div><div class="rng">Aucune vente</div></td></tr></tbody></table></div></section>
+<section class="pays" id="pays-jp" style="background:var(--bg2)"><div class="wrap"><div class="phead"><span class="flag f-jp"></span><h2 class="title-font"><em>Cote</em> Japon<small>Yahoo! Enchères, PayPay Furima, Mercari Japon, SNKRDUNK · 528 ventes</small></h2></div><table class="ctable"><thead><tr><th class="nosort">Photo</th><th class="nosort">Carte / version</th><th class="nosort">Non gradée</th><th class="nosort">PSA 10</th><th class="nosort">Autre gradée</th></tr></thead><tbody><tr data-v="Carte Chakra CP-001 New York Yankees"><td class="c-img"><img class="thumb" src="images/thumbs/us-tcgplayer-cdn-tcgplayer-com-product-717838-in-1000x1000-jpg.jpg" data-full="images/thumbs/us-tcgplayer-cdn-tcgplayer-com-product-717838-in-1000x1000-jpg.jpg" alt="Carte Chakra CP-001 · New York Yankees" loading="lazy" referrerpolicy="no-referrer"></td><td class="c-v"><span class="vname">New York Yankees</span><span class="vtot">Carte Chakra CP-001 · 500 ventes relevées</span><a class="vlink" href="../resultats.html?q=New+York+Yankees#pays-jp">Voir les ventes →</a></td><td class="cv" data-l="Non gradée"><div class="val">253 €</div><div class="rng">56 € – 315 € · 412 ventes (+75 hors cote)</div><div class="last">Dernière vente : 20/10/2026</div></td><td class="cv" data-l="PSA 10"><div class="val">787 €</div><div class="rng">731 € – 901 € · 8 ventes (+1 hors cote)</div><div class="last">Dernière vente : 20/10/2026</div></td><td class="cv" data-l="Autre gradée"><div class="val">746 €</div><div class="rng">703 € – 787 € · 4 ventes</div><div class="last">Dernière vente : 19/10/2026</div></td></tr><tr data-v="Carte Chakra CP-001 Gen Con 2026"><td class="c-img"><img class="thumb" src="images/thumbs/us-tcgplayer-cdn-tcgplayer-com-product-717832-in-1000x1000-jpg.jpg" data-full="images/thumbs/us-tcgplayer-cdn-tcgplayer-com-product-717832-in-1000x1000-jpg.jpg" alt="Carte Chakra CP-001 · Gen Con 2026" loading="lazy" referrerpolicy="no-referrer"></td><td class="c-v"><span class="vname">Gen Con 2026</span><span class="vtot">Carte Chakra CP-001 · 13 ventes relevées</span><a class="vlink" href="../resultats.html?q=Gen+Con+2026#pays-jp">Voir les ventes →</a></td><td class="cv" data-l="Non gradée"><div class="val">1 139 €</div><div class="rng">394 € – 1 687 € · 8 ventes (+4 hors cote)</div><div class="last">Dernière vente : 12/10/2026</div></td><td class="cv" data-l="PSA 10"><div class="val">2 249 €</div><div class="rng">1 vente</div><div class="warn">⚠ Moins de 3 ventes : cote indicative</div><div class="last">Dernière vente : 13/10/2026</div></td><td class="cv" data-l="Autre gradée"><div class="val na">—</div><div class="rng">Aucune vente</div></td></tr><tr data-v="Carte Chakra CP-001 Event Promo (BCG Fest)"><td class="c-img"><img class="thumb" src="images/thumbs/mercari-m66907742874.jpg" data-full="images/mercari-m66907742874.jpg" alt="Carte Chakra CP-001 · Event Promo (BCG Fest)" loading="lazy" referrerpolicy="no-referrer"></td><td class="c-v"><span class="vname">Event Promo (BCG Fest)</span><span class="vtot">Carte Chakra CP-001 · 14 ventes relevées</span><a class="vlink" href="../resultats.html?q=Event+Promo+(BCG+Fest)#pays-jp">Voir les ventes →</a></td><td class="cv" data-l="Non gradée"><div class="val">112 €</div><div class="rng">110 € – 280 € · 14 ventes</div><div class="last">Dernière vente : 21/10/2026</div></td><td class="cv" data-l="PSA 10"><div class="val na">—</div><div class="rng">Aucune vente</div></td><td class="cv" data-l="Autre gradée"><div class="val na">—</div><div class="rng">Aucune vente</div></td></tr><tr data-v="Carte Chakra CP-001 Event Promo (NYCC)"><td class="c-img"><img class="thumb" src="images/thumbs/us-i-ebayimg-com-images-g-BycAAeSwlBNqzrTI-s-l400-jpg.jpg" data-full="images/thumbs/us-i-ebayimg-com-images-g-BycAAeSwlBNqzrTI-s-l400-jpg.jpg" alt="Carte Chakra CP-001 · Event Promo (NYCC)" loading="lazy" referrerpolicy="no-referrer"></td><td class="c-v"><span class="vname">Event Promo (NYCC)</span><span class="vtot">Carte Chakra CP-001 · 1 vente relevée</span><a class="vlink" href="../resultats.html?q=Event+Promo+(NYCC)#pays-jp">Voir les ventes →</a></td><td class="cv" data-l="Non gradée"><div class="val">236 €</div><div class="rng">1 vente</div><div class="warn">⚠ Moins de 3 ventes : cote indicative</div><div class="last">Dernière vente : 18/10/2026</div></td><td class="cv" data-l="PSA 10"><div class="val na">—</div><div class="rng">Aucune vente</div></td><td class="cv" data-l="Autre gradée"><div class="val na">—</div><div class="rng">Aucune vente</div></td></tr></tbody></table></div></section>
+
+<section style="padding-top:30px">
+  <div class="wrap">
+    <h2 class="sec">Produits à venir</h2>
+    <p class="secnote">Pas encore de cote : le NARUTO CARD GAME sort dans le monde entier en juin 2027. Toutes les dates sur la page <a href="../sorties.html" style="color:var(--red2)">Sorties</a>.</p>
+    <ul class="upcoming">
+      <li><span class="when">Juin 2027</span><b>Starter Deck Naruto Uzumaki</b></li>
+      <li><span class="when">Juin 2027</span><b>Starter Deck Sasuke Uchiha</b></li>
+      <li><span class="when">Juin 2027</span><b>Starter Deck Gaara</b></li>
+      <li><span class="when">Juin 2027</span><b>Booster « Here Comes Naruto Uzumaki! »</b></li>
+      <li><span class="when">Dès février 2027</span><b>Premium Card Collection Vol.00 · CHAKRA Set (exclusif aux Premier Demo Events)</b></li>
+    </ul>
+    <div class="notes">
+      <p>• Prix convertis en euros (1 € = 1,1253 $ = 177,82 ¥, taux BCE du 16/10/2026) : montants approximatifs, hors frais de port et d'intermédiaire.</p>
+      <p>• Japon : prix du marché japonais, sans les frais d'intermédiaire (Buyee, ZenMarket…), le port vers la France ni la TVA d'importation.</p>
+      <p>• 3 ventes dont le pays n'est pas connu ne comptent dans aucune cote par pays.</p>
+      <p>• Le détail de chaque vente (date, photo, source) est sur la page <a href="../resultats.html" style="color:var(--red2)">Résultats</a>. Le tableau des cotes est aussi disponible en <a href="cotes.csv" style="color:var(--red2)">CSV</a>.</p>
+      <p>• Cotes calculées le 21/10/2026 à partir de data/ventes.csv.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<div class="lb" id="lb" onclick="this.classList.remove('open')"><img id="lb-img" alt=""></div>
+
+<footer>
+  <div class="wrap foot">
+    <div>© 2026 <strong>Naruto card and card</strong></div>
+    <div>Site de fan non officiel, sans lien avec Bandai ni Shueisha. NARUTO et NARUTO CARD GAME sont des marques de leurs propriétaires respectifs.</div>
+  </div>
+</footer>
+<script>
+document.addEventListener('click',function(e){var t=e.target;if(t.classList&&t.classList.contains('thumb')){document.getElementById('lb-img').src=t.getAttribute('data-full');document.getElementById('lb').classList.add('open')}});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')document.getElementById('lb').classList.remove('open')});
+document.querySelectorAll('#menu a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('menu').classList.remove('open')})});
+(function(){var q=document.getElementById('cq');function norm(s){return String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[-\s]+/g,' ')}
+q.addEventListener('input',function(){var w=norm(q.value.trim()).split(' ').filter(Boolean);
+document.querySelectorAll('tr[data-v]').forEach(function(tr){var h=norm(tr.getAttribute('data-v'));tr.style.display=w.every(function(x){return h.indexOf(x)>=0})?'':'none'})})})();
+</script>
+</body>
+</html>

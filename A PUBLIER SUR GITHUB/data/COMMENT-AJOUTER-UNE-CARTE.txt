@@ -1,0 +1,41 @@
+COMMENT AJOUTER UNE CARTE DANS LA BARRE « CARTE »
+==================================================
+
+La barre « Carte : » sous les rubriques (sur toutes les pages) propose les cartes
+écrites dans le fichier data/cartes.csv. Pour ajouter une carte, il suffit
+d'ajouter UNE LIGNE dans ce fichier.
+
+1) Ouvre data/cartes.csv (sur GitHub : clique sur le fichier, puis sur le crayon
+   « Edit this file »). Sur ton ordinateur tu peux l'ouvrir avec le Bloc-notes.
+
+2) La première ligne ne se touche pas :
+   pays,numero,nom,version,image
+
+3) Ajoute ta carte à la fin, une carte par ligne, dans cet ordre :
+   pays    : France, États-Unis ou Japon (exactement écrit comme ça)
+   numero  : le numéro imprimé sur la carte, par exemple CP-001
+   nom     : le nom de la carte, par exemple Carte Chakra
+   version : la version, par exemple New York Yankees
+   image   : FACULTATIF. Le chemin d'une photo du site
+             (ex. naruto-cotes/images/thumbs/ma-photo.jpg) ou une adresse
+             https://... Si tu n'as pas de photo, laisse vide mais garde la
+             virgule avant.
+
+   Exemples :
+   France,CP-001,Carte Chakra,Paris Games Week 2026,
+   Japon,CP-001,Carte Chakra,New York Yankees,naruto-cotes/images/thumbs/mercari-m96476353922.jpg
+
+4) Si un nom contient une virgule, mets-le entre guillemets :
+   France,ST01-001,"Naruto, Uzumaki",Starter,
+
+5) La même carte vendue dans 2 pays = 2 lignes (une par pays).
+
+6) Enregistre (sur GitHub : bouton vert « Commit changes »). Le site est à jour
+   1 à 2 minutes après. Rien d'autre à relancer.
+
+Quand on clique sur une carte proposée, la page Résultats s'ouvre avec les
+ventes de cette carte, seulement pour le pays choisi.
+
+Attention : la barre ne marche pas si tu ouvres les pages en double-cliquant
+sur le fichier dans ton ordinateur (le navigateur bloque la lecture de
+cartes.csv). Elle marche sur le site en ligne.
